@@ -1,0 +1,15 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+
+<ul>
+    {% for post in posts %}
+    <div class="container-fluid" style="margin-top: 10px;border:1px solid #cecece;">
+            <h5>Posted by: {{ post.author.get_username }}</h5>
+            <h6>{{ post.content }}</h6>
+            <h6 style="font-size: 11px">{{ post.publish_date }}</h6>
+    </div>
+    {% endfor %}
+</ul>
+
+{% endblock %}

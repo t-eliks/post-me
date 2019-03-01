@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body style="max-width: 900px; margin:auto">
+
+      <div class="row justify-content-center">
+          <div class="row">
+              <a href="/" style="text-decoration: none"><div class="row justify-content-center">
+                  <img src="https://png.pngtree.com/svg/20170713/mail_123245.png" width="150" height="130">
+                  <h1 class="display-3" style="margin-top: 20px; color:#0375B4">Post</h1>
+                  <h1 class="display-3" style="margin: 20px">Me</h1>
+                  </div></a>
+                  {% if user.is_authenticated is False %}
+                  <div style="margin-top: 50px; margin-left: 30px">
+                      <a href="/accounts/login" class="btn btn-primary">Log-in</a>
+                      <button type="button" class="btn btn-primary">Register</button>
+                    </div>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <div style="margin-top: 50x; margin-left: 30px">
+                      <p class="h6">Welcome back,</p>
+                      <p class="h6" style="font-weight: bold">{{ user.get_username }}</p>
+                      <a href="/accounts/logout" class="btn btn-primary">Log out</a>
+                    </div>
+                    {% endif %}
+          </div>
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col" style="margin-right: 20px">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" style="background:#0375B4;border:blue" type="submit">Search</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
