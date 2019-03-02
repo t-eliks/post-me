@@ -2,14 +2,24 @@
 
 {% block content %}
 
-<ul>
-    {% for post in posts %}
-    <div class="container-fluid" style="margin-top: 10px;border:1px solid #cecece;">
-            <h5>Posted by: {{ post.author.get_username }}</h5>
+<!-- Categories -->
+<div class="container">
+    <h1 class="display-5 mt-4 text-center border pb-2 pt-2">Trending posts</h1>
+    {% if posts %}
+    <ul class="list-group">
+        {% for post in posts %}
+        <li class="list-group-item list-group-item-action list-group-item-primary">
             <h6>{{ post.content }}</h6>
-            <h6 style="font-size: 11px">{{ post.publish_date }}</h6>
-    </div>
-    {% endfor %}
-</ul>
+            <div class="row container">
+                <h6 style="font-size:11px;margin-right: 10px">{{ post.publish_date }}</h6>
+                <h6 style="font-size: 11px">Posted by: {{ post.author.get_username }}</h5>
+            </div>
+          </li>
+          {% endfor %}
+      </ul>
+      {% else %}
+      <span>No posts. :(</span>
+    {% endif %}
+  </div>
 
 {% endblock %}
