@@ -8,7 +8,10 @@ import hello.views
 
 urlpatterns = [
     path("", hello.views.index, name="index"),
+    # ex: .../penktas postas/
+    path('<int:post_id>/', hello.views.detail, name='detail'),
     path("accounts/", include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
     path("accounts/login/", include('django.contrib.auth.urls')),
+
 ]
