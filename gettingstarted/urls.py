@@ -6,16 +6,13 @@ admin.autodiscover()
 
 import hello.views
 
-# To add a new path, first import the app:
-# import blog
-#
-# Then add the new path:
-# path('blog/', blog.urls, name="blog")
-#
-# Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
-
 urlpatterns = [
     path("", hello.views.index, name="index"),
-    path("db/", hello.views.db, name="db"),
+    # ex: .../penktas postas/
+    path('<int:post_id>/', hello.views.detail, name='detail'),
+    path("publish/", hello.views.publishPost, name='publish'),
+    path("accounts/", include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
+    path("accounts/login/", include('django.contrib.auth.urls')),
+
 ]

@@ -1,0 +1,26 @@
+{% extends 'hello/base.html' %}
+
+{% block content %}
+<!-- Categories -->
+<div class="container">
+    <h1 class="display-5 mt-4 text-center border pb-2 pt-2">Trending posts</h1>
+    {% if posts %}
+    <ul class="list-group">
+        {% for post in posts %}
+        <li class="list-group-item list-group-item-action list-group-item-primary " style="margin-bottom: 20px;"> <a href="{% url 'detail' post.id %}">
+            <h6>{{ post.headline }}</h6>
+            <div class="row container">
+                <h6 style="font-size:11px;margin-right: 10px">{{ post.publish_date }}</h6>
+                <h6 style="font-size: 11px;margin-right: 10px">Posted by: {% if post.author.get_username %} {{ post.author.get_username }} {% else %} Anon {% endif %} </h6>         ures
+                <h6 style="font-size: 11px">Price: {{ post.price }} EUR</h6>
+            </div>
+            </a>
+          </li>
+          {% endfor %}
+      </ul>
+      {% else %}
+      <span>No posts. :(</span>
+    {% endif %}
+  </div>
+
+{% endblock %}
