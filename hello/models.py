@@ -23,7 +23,7 @@ class Review(models.Model):
     score = models.IntegerField(default=0, validators=[MinValueValidator(0),MaxValueValidator(5)])
     publish_date = models.DateField("Published on", auto_now_add=True, null=True)
     def __str__(self):
-        return str(self.id)  + " " + self.headline
+        return str(self.id)  + " " + self.headlin
 
 class PostForm(ModelForm):
     class Meta:
