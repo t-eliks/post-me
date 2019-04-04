@@ -12,6 +12,7 @@ class Post(models.Model):
     headline = models.CharField(max_length=200, default="Skelbimas be pavadinimo")
     price = models.DecimalField(default=0, max_digits=7, decimal_places=2)
     content = models.TextField()
+    rating = models.IntegerField(default=0);
     publish_date = models.DateField("Published on", auto_now_add=True)
     def __str__(self):
         return str(self.id)  + " " + self.headline
@@ -20,10 +21,10 @@ class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews', blank=True, null=True)
     headline = models.CharField(max_length=200, default="Atsiliepimas")
     review_text = models.TextField()
-    score = models.IntegerField(default=0, validators=[MinValueValidator(0),MaxValueValidator(5)])
+    score = models.IntegerField(default=0, validators=[MinValueValidator(1),MaxValueValidator(5)])
     publish_date = models.DateField("Published on", auto_now_add=True, null=True)
     def __str__(self):
-        return str(self.id)  + " " + self.headlin
+        return str(self.id)  + " " + self.headline
 
 class PostForm(ModelForm):
     class Meta:

@@ -1,18 +1,24 @@
 <h3> {{ post.headline }} </h3>
-<div>{{ post.content }}</div>
+<div>
+    <div>{{ post.content }}</div>
+    <div>{{ post.price }}</div>
+    <div>{{ post.publish_date }}</div>
+</div>
 
 <h4>Atsiliepimai</h4>
 {% if reviews %}
-<ul class="list-group">
-    {% for rew in reviews %}
-    <li class="list-group-item list-group-item-action list-group-item-primary">
-        <h5>{{ rew.headline }}</h5>
-        <dev>{{ rew.review_text }}</dev>
-    </br>
-        <span style="font-size : small;">{{ rew.publish_date }}</span>
+<div>
+  <ul class="list-group">
+      {% for rew in reviews %}
+      <li>
+        {{ rew.headline }}
+        {{ rew.review_text }}
+        {{ rew.score }}
+        {{ rew.publish_date }}
       </li>
       {% endfor %}
-  </ul>
-  {% else %}
-  <span>No reviews. :(</span>
-{% endif %}
+    </ul>
+    {% else %}
+    <span>Atsiliepimu nėra</span>
+  {% endif %}
+</div>
