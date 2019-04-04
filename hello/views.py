@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-
+    
 from django.contrib.auth.models import User
 
 from .models import Greeting
@@ -8,6 +8,9 @@ from .models import Post
 from .models import Review
 
 from.models import PostForm
+from.models import ReviewForm
+
+# import datetime
 
 # Create your views here.
 def index(request):
@@ -20,11 +23,20 @@ def index(request):
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     reviews = post.reviews.all()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            newReview = form.save(commit=False)
+            newReview.post = post
+            newReview.save()
+
     context = {
         'post': post,
-        'reviews': reviews
-
+        'reviews': reviews,
+        'form': ReviewForm
     }
+
     return render(request, 'hello/detail.html', context)
 
 def publishPost(request):

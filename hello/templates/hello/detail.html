@@ -5,6 +5,16 @@
     <div>{{ post.publish_date }}</div>
 </div>
 
+<h4>Rašyti atsiliepimą</h4>
+<form method="POST">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <button type="submit">Post</button>
+</form>
+
+
 <h4>Atsiliepimai</h4>
 {% if reviews %}
 <div>
@@ -21,4 +31,6 @@
     {% else %}
     <span>Atsiliepimu nėra</span>
   {% endif %}
-</div>
+</div> 
+
+
