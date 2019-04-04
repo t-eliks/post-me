@@ -7,8 +7,8 @@ from .models import Greeting
 from .models import Post
 from .models import Review
 
-from.models import PostForm
-from.models import ReviewForm
+from.forms import PostForm
+from.forms import ReviewForm
 
 # import datetime
 
