@@ -37,7 +37,8 @@ def detail(request, post_id):
     context = {
         'post': post,
         'reviews': reviews,
-        'form': ReviewForm
+        'form': ReviewForm,
+        'user': request.user
     }
 
     return render(request, 'hello/detail.html', context)
