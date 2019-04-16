@@ -1,18 +1,66 @@
-<h3> {{ post.headline }} </h3>
-<div>{{ post.content }}</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+  crossorigin="anonymous">
 
-<h4>Atsiliepimai</h4>
-{% if reviews %}
-<ul class="list-group">
-    {% for rew in reviews %}
-    <li class="list-group-item list-group-item-action list-group-item-primary">
-        <h5>{{ rew.headline }}</h5>
-        <dev>{{ rew.review_text }}</dev>
-    </br>
-        <span style="font-size : small;">{{ rew.publish_date }}</span>
-      </li>
-      {% endfor %}
-  </ul>
-  {% else %}
-  <span>No reviews. :(</span>
-{% endif %}
+<link rel="stylesheet" href="styles.css">
+
+{% block content %}
+<div class="container" style="border: 1px solid red">
+  <h3 class="text-center"> {{ post.headline }} </h3>
+  <div>
+      <div class="bg-light text-dark content">
+        {{ post.content }}
+      </div>
+      <div>{{ post.price }}</div>
+      <div>{{ post.publish_date }}</div>
+  </div>
+
+  <a href="/">Atgal</a>
+
+  {% if user.is_authenticated %}
+    <h4>Rašyti atsiliepimą</h4>
+    <form method="POST">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <button type="submit">Post</button>
+    </form>
+  {% endif %}
+
+  <h4>Atsiliepimai</h4>
+  {% if reviews %}
+  <div>
+    <ul class="list-group list-unstyled ">
+        {% for rew in reviews %}
+        <li class="container">
+          <h5>{{ rew.headline }}</h5>
+          <div class="container">
+            {{ rew.review_text }}
+          </div>
+          <div class="row">
+            <div class="col-sm">
+                <b>Ivertinimas:</b>
+                <p>{{ rew.score }}</p>
+            </div>
+            <div class="col-sm">
+                <b>Paskelbimo data:</b>
+                <p>{{ rew.publish_date }}</p>
+            </div>
+            <div class="col-sm">
+                <b>Autorius:</b>
+                <p>{{ rew.reviewAuthor }}</p>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <span>Atsiliepimu nėra</span>
+    {% endif %}
+  </div> 
+</div>
+{% endblock %}
+
+

@@ -1,7 +1,8 @@
-DevCops
+# Post-me
 
-Post-Me
+**DevCops team:**  
+Arvydas Apulskis  
+Lukas Bernotas  
+Rokas Gulbinas  
 
-Arvydas Apulskis
-Lukas Bernotas
-Rokas Gulbinas
+**_Link to site:_** [PostMe](post-me.herokuapp.com)
