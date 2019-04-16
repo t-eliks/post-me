@@ -18,6 +18,7 @@ class Post(models.Model):
   
 class Review(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews', blank=True, null=True)
+    reviewAuthor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default = 0)
     headline = models.CharField(max_length=200, default="Atsiliepimas")
     review_text = models.TextField()
     score = models.IntegerField(default=1, validators=[MinValueValidator(1),MaxValueValidator(5)])

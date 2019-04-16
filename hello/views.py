@@ -31,6 +31,7 @@ def detail(request, post_id):
         if form.is_valid():
             newReview = form.save(commit=False)
             newReview.post = post
+            newReview.reviewAuthor = request.user
             newReview.save()
 
     context = {
