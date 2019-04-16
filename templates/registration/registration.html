@@ -1,4 +1,7 @@
 {% block content %}
+{% if user.is_authenticated %}
+    Jūs esate prisjungęs <a href="/">Atgal</a>
+{% else %}
     <div class="container">
         {% comment %} <form action="{% url 'hello:user_register' %}" method="post"> {% endcomment %}
         <form method="post">
@@ -47,12 +50,6 @@
                                 {{ form.last_name }}
                             </div>
                         </div>
-                        <div class="form-group clearfix">
-                            <label for="{{ form.phone_number.id_for_label }}" class="col-md-4 control-label text-right">Phone Number:</label>
-                            <div class="col-md-6">
-                                {{ form.phone_number }}
-                            </div>
-                        </div>
                         <div class="col-md-6 col-md-offset-4">
                             <input type="submit" value="Register" class="btn btn-success">
                         </div>
@@ -61,4 +58,5 @@
             </div>
         </form>
     </div>
+{% endif %}
 {% endblock %}

@@ -8,3 +8,11 @@
     box-shadow: none;
 }
 
+.content {
+    min-height: 80px;
+    border: 1px solid red;
+}
+
+ul {
+    list-style-type: none;
+  }
