@@ -14,6 +14,9 @@
                 <h6 style="font-size: 11px;margin-right: 10px">Posted by: {% if post.author.get_username %} {{ post.author.get_username }} {% else %} Anon {% endif %} </h6>
                 <h6 style="font-size: 11px">Price: {{ post.price }} EUR</h6>
             </div>
+            {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}hello/post/{{ post.id }}/change">Edit</a>
+            {% endif %}
             </a>
           </li>
           {% endfor %}
