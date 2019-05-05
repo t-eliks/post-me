@@ -14,7 +14,6 @@ class ReviewForm(ModelForm):
         model = Review
         fields = ['headline', 'review_text', 'score']
 
-
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))

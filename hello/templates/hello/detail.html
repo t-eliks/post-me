@@ -6,37 +6,49 @@
 <link rel="stylesheet" href="styles.css">
 
 {% block content %}
-<div class="container" style="border: 1px solid red">
-  <h3 class="text-center"> {{ post.headline }} </h3>
-  <div>
-      <div class="bg-light text-dark content">
+
+<div class="container">
+  <a href="/" class="btn btn-primary mt-2">Back</a>
+  <div class="card mt-2">
+  <h3 class="text-center mt-2 font-italic" style="color: #007BFF;"> {{ post.headline }} </h3>
+  <div class="card-body card-text">
+      <div class="my-4">
         {{ post.content }}
+        <hr>
       </div>
-      <div>{{ post.price }}</div>
-      <div>{{ post.publish_date }}</div>
+      <div class="row">
+        <div class="col text-left font-weight-bold">Price: {{ post.price }}&euro;</div>
+        <div class="col text-right font-weight-bold">{{ post.publish_date }}</div>
+      </div>
+  </div>
   </div>
 
-  <a href="/">Atgal</a>
-
+  
+  <div class="card my-3">
+    <div class="container" style="color: #007BFF;">
   {% if user.is_authenticated %}
-    <h4>Rašyti atsiliepimą</h4>
+    <h4 class="mt-2 font-italic">Rašyti atsiliepimą</h4>
+    <hr>
     <form method="POST">
             {% csrf_token %}
-            <table>
+            <table class="input-group">
             {{ form.as_table }}
             </table>
-            <button type="submit">Post</button>
+            <button class="btn btn-primary" type="submit">Post</button>
     </form>
+    </div>
+    <hr>
   {% endif %}
 
-  <h4>Atsiliepimai</h4>
+  <div class="container">
+  <h4 class="font-italic" style="color: #007BFF;">Atsiliepimai</h4>
   {% if reviews %}
   <div>
-    <ul class="list-group list-unstyled ">
+    <ul class="list-group list-unstyled">
         {% for rew in reviews %}
-        <li class="container">
-          <h5>{{ rew.headline }}</h5>
-          <div class="container">
+        <li class="container bg-light mb-2 border rounded">
+          <h5 class="mt-1">{{ rew.headline }}</h5>
+          <div class="container p-2">
             {{ rew.review_text }}
           </div>
           <div class="row">
@@ -59,6 +71,8 @@
       {% else %}
       <span>Atsiliepimu nėra</span>
     {% endif %}
+  </div>
+  </div>
   </div> 
 </div>
 {% endblock %}
