@@ -16,38 +16,52 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
 
-  <style>
+<style>
 
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
+  html {
+    height: 100%;
+    box-sizing: border-box;
+  }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
 
-body {
-  position: relative;
-  margin: 0;
-  padding-bottom: 6rem;
-  min-height: 100%;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-}
+  body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #d8c784;
+    
+  }
 
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #8cc7f8;
-  text-align: center;
-}</style>
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #8cc7f8;
+    text-align: center;
+  }
 
-  <!-- <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"> -->
+
+  a {
+    color: #428BCA;
+    text-decoration: none;
+  }
+
+  a:hover, a:focus {
+      color: #2A6496;
+      text-decoration: underline;
+  }
+
+</style>
+
 </head>
 
 <body>
@@ -57,10 +71,12 @@ body {
       <div class="row">
         <div class="col align-self-center text-center">
           <h1>
+
             <i class="fas fa-envelope"></i>
                 <span class="text-primary">Post</span>
                 me
           </h1>
+
         </div>
         <div class="col align-self-center">
           <div class="input-group">
@@ -74,13 +90,13 @@ body {
           </div>
         </div>
        {% if user.is_authenticated %}
-       <div class="row align-self-center">
+       <div class="col align-self-center ">
           <span class="p-2 ml-2">Welcome, {{ user.get_username }}</span>
-          <a class="btn btn-primary" href='/accounts/logout'>Logout</a>
+          <a class="btn btn-primary" href='/accounts/logout'>Atsijungti</a>
         </div>
        {% else %}
        <div class="col align-self-center text-center">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+          <a href="/accounts/login/" class="btn btn-primary">Prisjungti</a>
           <a href="/register" class="btn btn-primary">Registracija</a>
         </div>
        {% endif %}
@@ -91,90 +107,6 @@ body {
   {% block content %}
   {% endblock %}
 
-  <!-- Login modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="container">
-            <h3 class="text-center">Login</h3>
-          </div>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <form method="POST" action='/accounts/login/'>
-              {% csrf_token %}
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Username</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="username" placeholder="Username">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" name="password" placeholder="Password">
-                </div>
-              </div>
-            
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="container text-center">
-            <button type="submit" class="btn btn-primary pl-5 pr-5">Sign in</button>
-          </div>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-
-<!-- Register modal -->
-  <div class="modal fade" id="registerModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="container">
-            <h3 class="text-center">Register</h3>
-            <div class="text text-center">Create <span class="text-primary">your</span> account</div>
-          </div>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <form class="needs-validation">
-              <div class="form-group form-row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Last name">
-                </div>
-              </div>
-              <div class="form-group form-row">
-                <div class="col">
-                  <input type="email" class="form-control" placeholder="Enter your email">
-                </div>
-              </div>
-              <div class="form-group form-row">
-                <div class="col">
-                  <input id="inputPassword" type="password" class="form-control" placeholder="Enter your password">
-                  <small class="form-text text-muted pl-1">Your password must be 8-20 characters long.</small>
-                </div>
-                <div class="col">
-                  <input type="password" class="form-control" placeholder="Confirm your password">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="container">
-            <button class="btn btn-primary btn-block">Register now</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> 
 
 
   <!-- Optional JavaScript -->

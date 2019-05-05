@@ -2,8 +2,8 @@
 
 {% block content %}
 <!-- Categories -->
-<div class="container">
-    <h1 class="display-5 mt-4 text-center border pb-2 pt-2">Trending posts</h1>
+<div class="container" style="background: #272d2d; color: #f7f7ff; border-radius: 5px; padding: 0px 25px; padding-bottom: 15px;">
+    <h1 class="display-5 mt-4 text-center pb-2 pt-2">Trending posts</h1>
     {% if posts %}
     <ul class="list-group">
         {% for post in posts %}
@@ -24,6 +24,5 @@
       {% else %}
       <span>No posts. :(</span>
     {% endif %}
-  </div>
-
+</div>
 {% endblock %}
