@@ -51,9 +51,12 @@ def publishPost(request):
             f.author = request.user
             f.save()
 
+            #return HttpResponseRedirect('/')
+
     context = {
         'form': PostForm
     }
+    
     return render(request, 'hello/publish.html', context)
 
 def user_register(request):
@@ -102,3 +105,22 @@ def user_register(request):
         form = RegisterForm()
 
     return render(request, template, {'form': form})
+
+
+#def user_login(request):
+
+def user_login(request):
+    template = '../templates/registration/login.html'
+    username = password = ''
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+    
+    return render(request,template)
+

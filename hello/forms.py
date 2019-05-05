@@ -9,6 +9,16 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['headline', 'price', 'content']
+        widgets = {
+            'headline': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'price': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'headline': _('Antraštė'),
+            'content': _('Turinys'),
+            'price': _('Kaina'),
+        }
 
 class ReviewForm(ModelForm):
     class Meta:

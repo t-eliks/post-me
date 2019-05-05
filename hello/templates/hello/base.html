@@ -43,8 +43,9 @@
       bottom: 0;
       left: 0;
       padding: 1rem;
-      background-color: #8cc7f8;
+      background-color: #406889;
       text-align: center;
+      color: #f7f7ff;
     }
 
 
@@ -69,8 +70,8 @@
       text-decoration: underline;
     }
 
-      hr {
-    display: block; height: 1px;
+    hr {
+      display: block; height: 1px;
       border: 0; border-top: 2px solid #007BFF;
       margin: 1em 0; padding: 0;
     }
@@ -87,7 +88,19 @@
     }
 
     .rounded{
-        padding: 10px;
+        padding: 20px;
+    }
+
+    .list-group-item-primary-custom {
+      background: #2a3e57;
+      border: 1px solid #f7f7ff;
+      color: #f7f7ff;
+    }
+
+    .list-group-item-primary-custom:hover {
+      background: #406889;
+      border: 1px solid #f7f7ff;
+      color: #d8c784;
     }
 
   </style>
@@ -126,7 +139,7 @@
         </div>
        {% else %}
        <div class="col align-self-center text-center">
-          <a href="/accounts/login/" class="btn btn-primary">Prisjungti</a>
+          <a href="/login" class="btn btn-primary">Prisjungti</a>
           <a href="/register" class="btn btn-primary">Registracija</a>
         </div>
        {% endif %}

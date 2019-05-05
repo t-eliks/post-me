@@ -7,7 +7,8 @@
     {% if posts %}
     <ul class="list-group">
         {% for post in posts %}
-        <li class="list-group-item list-group-item-action list-group-item-primary mb-2 rounded"> <a class="text-decoration-none" href="{% url 'detail' post.id %}">
+        <a class="text-decoration-none" href="{% url 'detail' post.id %}">
+        <li class="list-group-item list-group-item-action list-group-item-primary-custom mb-2 rounded">
             <h6>{{ post.headline }}</h6>
             <div class="row container">
                 <h6 style="font-size:11px;margin-right: 10px">{{ post.publish_date }}</h6>
@@ -17,8 +18,8 @@
             {% if user.is_staff %}
             <a href="{% url 'admin:index' %}hello/post/{{ post.id }}/change">Edit</a>
             {% endif %}
-            </a>
           </li>
+          </a>
           {% endfor %}
       </ul>
       {% else %}
