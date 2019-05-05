@@ -13,54 +13,84 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
     crossorigin="anonymous">
   <title>Post it</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+  {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"> {% endcomment %}
 
-<style>
+  <style>
 
-  html {
-    height: 100%;
-    box-sizing: border-box;
-  }
+    html {
+      height: 100%;
+      box-sizing: border-box;
+    }
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
 
-  body {
-    position: relative;
-    margin: 0;
-    padding-bottom: 6rem;
-    min-height: 100%;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    background-color: #d8c784;
-    
-  }
+    body {
+      position: relative;
+      margin: 0;
+      padding-bottom: 6rem;
+      min-height: 100%;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #d8c784;
+    }
 
-  .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    background-color: #8cc7f8;
-    text-align: center;
-  }
+    .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 1rem;
+      background-color: #8cc7f8;
+      text-align: center;
+    }
 
 
-  a {
-    color: #428BCA;
-    text-decoration: none;
-  }
+    a:link {
+      color: inherit;
+      text-decoration: none;
+      outline: none;
+    }
 
-  a:hover, a:focus {
-      color: #2A6496;
+    a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: inherit;
       text-decoration: underline;
-  }
+    }
 
-</style>
+    a:active {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+      hr {
+    display: block; height: 1px;
+      border: 0; border-top: 2px solid #007BFF;
+      margin: 1em 0; padding: 0;
+    }
+
+    .btn {
+      width:100px;
+      padding: 5px 10px;
+    }
+
+    .btn-primary {
+      color: #f7f7ff !important;
+      background-color: #406889;
+      border: 0px;
+    }
+
+    .rounded{
+        padding: 10px;
+    }
+
+  </style>
 
 </head>
 
@@ -71,12 +101,12 @@
       <div class="row">
         <div class="col align-self-center text-center">
           <h1>
-
+          <a class="unstyled" href="/" style=" text-decoration: none;">
             <i class="fas fa-envelope"></i>
                 <span class="text-primary">Post</span>
                 me
           </h1>
-
+          <a>
         </div>
         <div class="col align-self-center">
           <div class="input-group">
