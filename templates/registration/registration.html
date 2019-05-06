@@ -10,7 +10,7 @@
 
   body {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    background-color: #d8c784;
+    background-color: #ffffff;
   }
 
   hr {
@@ -43,7 +43,7 @@
 {% if user.is_authenticated %}
     Jūs esate prisjungęs <a href="/">Atgal</a>
 {% else %}
-    <div class="container">
+    <div class="container mt-4" style="width: 30%">
         {% comment %} <form action="{% url 'hello:user_register' %}" method="post"> {% endcomment %}
         <form method="post" style>
             {% csrf_token %}
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-md-offset-4">
-                            <input type="submit" value="Register" class="btn btn-success">
+                            <input type="submit" value="Register" class="btn" style="background-color: #406889; color: #ffffff">
                         </div>
                     </div>
                 </div>
