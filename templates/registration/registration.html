@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+  crossorigin="anonymous">
+
+
+
+<head>
+<style>
+
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #d8c784;
+  }
+
+  hr {
+   display: block; height: 1px;
+    border: 0; border-top: 2px solid #007BFF;
+    margin: 1em 0; padding: 0;
+   }
+
+   .btn {
+    width:100px;
+    padding: 5px 10px;
+  }
+
+  .btn-primary {
+    
+    background-color: #406889;
+    border: 0px;
+
+  }
+
+  .rounded{
+      padding: 10px;
+  }
+
+</style>
+</head>
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    Jūs esate prisjungęs <a href="/">Atgal</a>
+{% else %}
+    <div class="container">
+        {% comment %} <form action="{% url 'hello:user_register' %}" method="post"> {% endcomment %}
+        <form method="post" style>
+            {% csrf_token %}
+            <div class="">
+                <div class="panel panel-default">
+                    <h3 class="panel-heading">Register</h3>
+                    <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+                       
+                        <div class="form-group clearfix">
+                            <label for="{{ form.username.id_for_label }}" class="col-md-4 control-label">Username<span class="text-red">*</span>:</label>
+                            <div class="col">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="{{ form.email.id_for_label }}" class="col-md-4 control-label">Email<span class="text-red">*</span>:</label>
+                            <div class="col">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="{{ form.password.id_for_label }}" class="col-md-4 control-label ">Password<span class="text-red">*</span>:</label>
+                            <div class="col">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="{{ form.password_repeat.id_for_label }}" class="col-md-4 control-label ">Confirm password:</label>
+                            <div class="col">
+                                {{ form.password_repeat }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="{{ form.first_name.id_for_label }}" class="col-md-4 control-label">First Name:</label>
+                            <div class="col">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="{{ form.last_name.id_for_label }}" class="col-md-4 control-label">Last Name:</label>
+                            <div class="col">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-4">
+                            <input type="submit" value="Register" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+{% endblock %}
