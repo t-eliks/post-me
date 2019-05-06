@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from .models import Greeting
 from .models import Post
@@ -43,6 +44,7 @@ def detail(request, post_id):
 
     return render(request, 'hello/detail.html', context)
 
+#@login_required(login_url='/login')
 def publishPost(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -51,9 +53,12 @@ def publishPost(request):
             f.author = request.user
             f.save()
 
+            #return HttpResponseRedirect('/')
+
     context = {
         'form': PostForm
     }
+    
     return render(request, 'hello/publish.html', context)
 
 def user_register(request):
@@ -102,3 +107,19 @@ def user_register(request):
         form = RegisterForm()
 
     return render(request, template, {'form': form})
+
+def user_login(request):
+    template = '../templates/registration/login.html'
+    username = password = ''
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/')
+    
+    return render(request,template)
+

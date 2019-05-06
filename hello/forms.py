@@ -3,16 +3,37 @@ from django.contrib.auth.models import User
 from .models import Post
 from .models import Review
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['headline', 'price', 'content']
+        widgets = {
+            'headline': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'price': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'headline': _('Antraštė'),
+            'content': _('Turinys'),
+            'price': _('Kaina'),
+        }
 
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = ['headline', 'review_text', 'score']
+        widgets = {
+            'headline': forms.TextInput(attrs={'class': 'form-control'}),
+            'review_text': forms.Textarea(attrs={'class': 'form-control'}),
+            'score': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'headline': _('Antraštė'),
+            'review_text': _('Atsiliepimas'),
+            'score': _('Įvertis'),
+        }
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))

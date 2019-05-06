@@ -1,80 +1,86 @@
+
+{% extends 'hello/base.html' %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
   crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
   crossorigin="anonymous">
 
-<link rel="stylesheet" href="styles.css">
-
 {% block content %}
 
-<div class="container">
-  <a href="/" class="btn btn-primary mt-2">Back</a>
-  <div class="card mt-2">
-  <h3 class="text-center mt-2 font-italic" style="color: #007BFF;"> {{ post.headline }} </h3>
-  <div class="card-body card-text">
-      <div class="my-4">
-        {{ post.content }}
+
+<div class="container" >
+
+    <!--Pirmas boxas-->
+    <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
+        <h3 class="text-center mt-2 font-italic" style="color: #007BFF;"> {{ post.headline }} </h3>
+        <div class="card-body card-text">
         <hr>
-      </div>
-      <div class="row">
-        <div class="col text-left font-weight-bold">Price: {{ post.price }}&euro;</div>
-        <div class="col text-right font-weight-bold">{{ post.publish_date }}</div>
-      </div>
-  </div>
-  </div>
-
-  
-  <div class="card my-3">
-    <div class="container" style="color: #007BFF;">
-  {% if user.is_authenticated %}
-    <h4 class="mt-2 font-italic">Rašyti atsiliepimą</h4>
-    <hr>
-    <form method="POST">
-            {% csrf_token %}
-            <table class="input-group">
-            {{ form.as_table }}
-            </table>
-            <button class="btn btn-primary" type="submit">Post</button>
-    </form>
+            <div class="my-4">
+            {{ post.content }}
+            <hr>
+            </div>
+            <div class="row">
+                <div class="col text-left font-weight-bold">Price: {{ post.price }}&euro;</div>
+                <div class="col text-right font-weight-bold">{{ post.publish_date }}</div>
+            </div>
+        </div>
     </div>
-    <hr>
-  {% endif %}
+   
+    <!--Antras boxas-->
+    {% if user.is_authenticated %}
+    <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
+        <form method="POST" style="color: white"> {% csrf_token %}
+            <h4 class="mt-2 font-italic">Rašyti atsiliepimą</h4>
+            <div class="form-group">
+            <hr>
+            {% for field in form %}
+                <label>{{field.label_tag}}</label> 
+                {{field}}
+                <br>
+            {% endfor%}
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
+       </form>
 
-  <div class="container">
-  <h4 class="font-italic" style="color: #007BFF;">Atsiliepimai</h4>
-  {% if reviews %}
-  <div>
-    <ul class="list-group list-unstyled">
-        {% for rew in reviews %}
-        <li class="container bg-light mb-2 border rounded">
-          <h5 class="mt-1">{{ rew.headline }}</h5>
-          <div class="container p-2">
-            {{ rew.review_text }}
-          </div>
-          <div class="row">
-            <div class="col-sm">
-                <b>Ivertinimas:</b>
-                <p>{{ rew.score }}</p>
-            </div>
-            <div class="col-sm">
-                <b>Paskelbimo data:</b>
-                <p>{{ rew.publish_date }}</p>
-            </div>
-            <div class="col-sm">
-                <b>Autorius:</b>
-                <p>{{ rew.reviewAuthor }}</p>
-            </div>
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <span>Atsiliepimu nėra</span>
+    </div>
     {% endif %}
-  </div>
-  </div>
-  </div> 
-</div>
+
+    <!--Trecias boxas-->
+     <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
+            <h4 class="font-italic">Atsiliepimai</h4>
+            {% if reviews %}
+                <ul class="list-group list-unstyled" >
+                    {% for rew in reviews %}
+                    <li class="container mb-2 border rounded" style="background: #2a3e57; color: #ffe2fe;" >
+                    <h5 class="mt-1">{{ rew.headline }}</h5>
+                    <div class="container p-2">
+                        {{ rew.review_text }}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <b>Ivertinimas:</b>
+                            <p>{{ rew.score }}</p>
+                        </div>
+                        <div class="col-sm">
+                            <b>Paskelbimo data:</b>
+                            <p>{{ rew.publish_date }}</p>
+                        </div>
+                        <div class="col-sm">
+                            <b>Autorius:</b>
+                            <p>{{ rew.reviewAuthor }}</p>
+                        </div>
+                    </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <span>Atsiliepimu nėra</span>
+            {% endif %}
+        </div>
+
+<div>
+
+
 {% endblock %}
 
 

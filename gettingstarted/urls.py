@@ -13,6 +13,9 @@ urlpatterns = [
     path("publish/", hello.views.publishPost, name='publish'),
     path("accounts/", include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
-    path("accounts/login/", include('django.contrib.auth.urls')),
+    path("login", hello.views.user_login, name="user_login"),
     path("register", hello.views.user_register, name='user_register')
 ]
+
+
+
