@@ -8,11 +8,11 @@
 {% block content %}
 
 
-<div class="container" >
+<div class="container border rounded" >
 
     <!--Pirmas boxas-->
-    <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
-        <h3 class="text-center mt-2 font-italic" style="color: #007BFF;"> {{ post.headline }} </h3>
+    <div class="mt-4 border rounded bg-light">
+        <h3 class="text-center mt-2 font-italic" style="color: #406889;"> {{ post.headline }} </h3>
         <div class="card-body card-text">
         <hr>
             <div class="my-4">
@@ -28,9 +28,9 @@
    
     <!--Antras boxas-->
     {% if user.is_authenticated %}
-    <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
-        <form method="POST" style="color: white"> {% csrf_token %}
-            <h4 class="mt-2 font-italic">Rašyti atsiliepimą</h4>
+    <div class="mt-4 border rounded bg-light">
+        <form method="POST"> {% csrf_token %}
+            <h4 class="mt-2 font-italic" style="color: #406889">Rašyti atsiliepimą</h4>
             <div class="form-group">
             <hr>
             {% for field in form %}
@@ -46,12 +46,12 @@
     {% endif %}
 
     <!--Trecias boxas-->
-     <div class="mt-4 rounded" style="background: #272d2d; color: #f7f7ff">
-            <h4 class="font-italic">Atsiliepimai</h4>
+     <div class="mt-4 border rounded">
+            <h4 class="font-italic" style="color: #406889">Atsiliepimai</h4>
             {% if reviews %}
                 <ul class="list-group list-unstyled" >
                     {% for rew in reviews %}
-                    <li class="container mb-2 border rounded" style="background: #2a3e57; color: #ffe2fe;" >
+                    <li class="container mb-2 border rounded bg-light" >
                     <h5 class="mt-1">{{ rew.headline }}</h5>
                     <div class="container p-2">
                         {{ rew.review_text }}

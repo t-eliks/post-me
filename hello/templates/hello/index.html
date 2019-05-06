@@ -2,7 +2,7 @@
 
 {% block content %}
 <!-- Categories -->
-<div class="container" style="background: #272d2d; color: #f7f7ff; border-radius: 5px; padding: 0px 25px; padding-bottom: 15px;">
+<div class="container">
     <h1 class="display-5 mt-4 text-center pb-2 pt-2">Trending posts</h1>
     {% if posts %}
     <ul class="list-group">
@@ -11,9 +11,9 @@
         <li class="list-group-item list-group-item-action list-group-item-primary-custom mb-2 rounded">
             <h6>{{ post.headline }}</h6>
             <div class="row container">
-                <h6 style="font-size:11px;margin-right: 10px">{{ post.publish_date }}</h6>
-                <h6 style="font-size: 11px;margin-right: 10px">Posted by: {% if post.author.get_username %} {{ post.author.get_username }} {% else %} Anon {% endif %} </h6>
-                <h6 style="font-size: 11px">Price: {{ post.price }} &euro;</h6>
+                <h6 class="mr-4">{{ post.publish_date }}</h6>
+                <h6>Posted by: {% if post.author.get_username %} {{ post.author.get_username }} {% else %} Anon {% endif %} </h6>
+                <h6 class="ml-4">Price: {{ post.price }} &euro;</h6>
             </div>
             {% if user.is_staff %}
             <a href="{% url 'admin:index' %}hello/post/{{ post.id }}/change">Edit</a>
