@@ -1,24 +1,27 @@
 from django.forms import ModelForm
-from django.contrib.auth.models import User
 from .models import Post
 from .models import Review
 from django import forms
+from .models import CATEGORIES
 from django.utils.translation import ugettext_lazy as _
+
 
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['headline', 'price', 'content']
+        fields = ['headline', 'price', 'content', 'category']
         widgets = {
             'headline': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'price': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
         }
         labels = {
-            'headline': _('Antraštė'),
-            'content': _('Turinys'),
-            'price': _('Kaina'),
+            'headline': _('Title'),
+            'content': _('Content'),
+            'price': _('Price'),
         }
+
 
 class ReviewForm(ModelForm):
     class Meta:
@@ -30,10 +33,11 @@ class ReviewForm(ModelForm):
             'score': forms.TextInput(attrs={'class': 'form-control'}),
         }
         labels = {
-            'headline': _('Antraštė'),
-            'review_text': _('Atsiliepimas'),
-            'score': _('Įvertis'),
+            'headline': _('Title'),
+            'review_text': _('Review'),
+            'score': _('Score'),
         }
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
