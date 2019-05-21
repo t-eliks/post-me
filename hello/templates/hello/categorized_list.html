@@ -1,9 +1,9 @@
 {% extends 'hello/base.html' %}
-
 {% block content %}
-<!-- Categories -->
 <div class="container">
-    <h1 class="display-5 mt-4 text-center pb-2 pt-2">Trending posts</h1>
+    <h1 class="display-5 mt-4 text-center pb-2 pt-2">
+        List of posts in <strong>{{ category_name }}</strong> category
+    </h1>
     {% if posts %}
     <ul class="list-group">
         {% for post in posts %}
@@ -19,9 +19,6 @@
             {% if user.is_staff %}
             <a href="{% url 'admin:index' %}hello/post/{{ post.id }}/change">Edit</a>
             {% endif %}
-            {% if user.is_staff %}
-            <a style="margin-left: 20px" href="{% url 'admin:index' %}auth/user/{{ post.author.id }}/change">Manage user</a>
-            {% endif %}
           </li>
         </a>
         {% endfor %}
@@ -30,4 +27,4 @@
       <span>No posts. :(</span>
     {% endif %}
 </div>
-{% endblock %}
+{% endblock content %}

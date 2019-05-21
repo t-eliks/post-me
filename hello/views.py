@@ -6,18 +6,21 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Greeting
-from .models import Post
-from .models import Review
+from .models import Greeting, Post, Review, CATEGORIES
 
-from.forms import PostForm
-from.forms import ReviewForm
-from .forms import RegisterForm
+from .forms import PostForm, ReviewForm, RegisterForm
 
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.order_by('-publish_date')[:5]
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = Post.objects.filter(headline__contains=search_term)
+    else:
+        posts = Post.objects.order_by('-publish_date')[:5]
+
     context = {
         'posts': posts,
     }
@@ -53,7 +56,7 @@ def publishPost(request):
             f.author = request.user
             f.save()
 
-            #return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/')
 
     context = {
         'form': PostForm
@@ -123,3 +126,21 @@ def user_login(request):
     
     return render(request,template)
 
+def categories(request):
+    categories = []
+
+    for var in range(len(CATEGORIES)):
+        categories.append(CATEGORIES[var][1])
+
+    context = {
+        'categories': categories
+    }
+    return render(request, 'hello/categories.html', context)
+
+def display_posts_by_category(request, category):
+    posts = Post.objects.filter(category=category)
+    context = {
+        'posts': posts,
+        'category_name': category
+    }
+    return render(request, 'hello/categorized_list.html', context)

@@ -8,7 +8,7 @@
 {% block content %}
 
 
-<div class="container border rounded" >
+<div class="container border rounded my-4" >
 
     <!--Pirmas boxas-->
     <div class="mt-4 border rounded bg-light">
@@ -30,7 +30,7 @@
     {% if user.is_authenticated %}
     <div class="mt-4 border rounded bg-light">
         <form method="POST"> {% csrf_token %}
-            <h4 class="mt-2 font-italic" style="color: #406889">Rašyti atsiliepimą</h4>
+            <h4 class="mt-2 font-italic" style="color: #406889">Write a review</h4>
             <div class="form-group">
             <hr>
             {% for field in form %}
@@ -47,7 +47,7 @@
 
     <!--Trecias boxas-->
      <div class="mt-4 border rounded">
-            <h4 class="font-italic" style="color: #406889">Atsiliepimai</h4>
+            <h4 class="font-italic" style="color: #406889">Reviews</h4>
             {% if reviews %}
                 <ul class="list-group list-unstyled" >
                     {% for rew in reviews %}
@@ -58,28 +58,31 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <b>Ivertinimas:</b>
+                            <b>Score:</b>
                             <p>{{ rew.score }}</p>
                         </div>
                         <div class="col-sm">
-                            <b>Paskelbimo data:</b>
+                            <b>Review date:</b>
                             <p>{{ rew.publish_date }}</p>
                         </div>
                         <div class="col-sm">
-                            <b>Autorius:</b>
+                            <b>Author:</b>
                             <p>{{ rew.reviewAuthor }}</p>
                         </div>
                     </div>
+                    {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}hello/review/{{ rew.id }}/change">Edit</a>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <a style="margin-left: 20px" href="{% url 'admin:index' %}auth/user/{{ rew.author.id }}/change">Manage user</a>
+                    {% endif %}
                     </li>
                     {% endfor %}
                 </ul>
             {% else %}
-                <span>Atsiliepimu nėra</span>
+                <span>No reviews yet</span>
             {% endif %}
         </div>
-
-<div>
-
 
 {% endblock %}
 

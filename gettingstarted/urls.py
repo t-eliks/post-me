@@ -14,8 +14,8 @@ urlpatterns = [
     path("accounts/", include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
     path("login", hello.views.user_login, name="user_login"),
-    path("register", hello.views.user_register, name='user_register')
+    path("register", hello.views.user_register, name='user_register'),
+    path("categories/", hello.views.categories, name='categories'),
+    path("categories/<str:category>/", hello.views.display_posts_by_category),
 ]
-
-
 
