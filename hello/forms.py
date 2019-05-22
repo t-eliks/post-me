@@ -19,7 +19,7 @@ class PostForm(ModelForm):
         labels = {
             'headline': _('Title'),
             'content': _('Content'),
-            'price': _('Price'),
+            'price': _('Price (EUR)'),
         }
 
 

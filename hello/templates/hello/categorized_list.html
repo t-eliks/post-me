@@ -2,19 +2,19 @@
 {% block content %}
 <div class="container">
     <h1 class="display-5 mt-4 text-center pb-2 pt-2">
-        List of posts in <strong>{{ category_name }}</strong> category
+        Posts in the <strong>{{ category_name }}</strong> category
     </h1>
     {% if posts %}
     <ul class="list-group">
         {% for post in posts %}
         <a class="text-decoration-none" href="{% url 'detail' post.id %}">
         <li class="list-group-item list-group-item-action list-group-item-primary-custom mb-2 rounded">
-            <h6>{{ post.headline }}</h6>
+            <h6><b>{{ post.headline }}</b></h6>
             <div class="row container">
                 <h6 class="mr-4">{{ post.publish_date }}</h6>
                 <h6>Posted by: {% if post.author.get_username %} {{ post.author.get_username }} {% else %} Anon {% endif %} </h6>
                 <h6 class="ml-4">Price: {{ post.price }} &euro;</h6>
-                <h6 class="ml-4">Category: {{ post.category }}</h6>
+                <h6 class="ml-4">Category: {{ categories|get_item:post.category }}</h6>
             </div>
             {% if user.is_staff %}
             <a href="{% url 'admin:index' %}hello/post/{{ post.id }}/change">Edit</a>
