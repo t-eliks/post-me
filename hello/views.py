@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.template.defaulttags import register
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -10,6 +11,10 @@ from .models import Greeting, Post, Review, CATEGORIES
 
 from .forms import PostForm, ReviewForm, RegisterForm
 
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 # Create your views here.
 def index(request):
@@ -23,6 +28,7 @@ def index(request):
 
     context = {
         'posts': posts,
+        'categories': dict(CATEGORIES)
     }
     return render(request, 'hello/index.html', context)
 
@@ -49,6 +55,9 @@ def detail(request, post_id):
 
 #@login_required(login_url='/login')
 def publishPost(request):
+    if request.user.is_authenticated is False:
+        return render(request, 'hello/publish.html', status=401)
+
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -141,6 +150,7 @@ def display_posts_by_category(request, category):
     posts = Post.objects.filter(category=category)
     context = {
         'posts': posts,
-        'category_name': category
+        'category_name': dict(CATEGORIES).get(category),
+        'categories': dict(CATEGORIES)
     }
     return render(request, 'hello/categorized_list.html', context)
